@@ -31,7 +31,7 @@ validator.addField(
 );
 
 validator.addField(
-  "#contentType",
+  "#cont-type",
   [
     {
       rule: "required",
@@ -84,7 +84,9 @@ validator.addField(
 );
 
 // 2. Get the data from input
-
+validator.onSuccess(() => {
+  console.log("hi");
+});
 // 3. Store the data in localStorage
 // 4. Fetch the data from localStorage
 // 5. Show the fetched data in UI table format.

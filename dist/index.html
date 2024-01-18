@@ -9,8 +9,8 @@
     <!-- BoxIcons -->
     <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
 
-    <script type="module" crossorigin src="/syllabus-organizer/assets/index-2YH4Za7o.js"></script>
-    <link rel="stylesheet" crossorigin href="/syllabus-organizer/assets/index-HoLPQnD2.css">
+    <script type="module" crossorigin src="/syllabus-organizer/assets/index-mhD36_G1.js"></script>
+    <link rel="stylesheet" crossorigin href="/syllabus-organizer/assets/index-irQyFcYa.css">
   </head>
 
   <body class="font-Sen bg-[#B9B4C7] relative">
@@ -36,7 +36,11 @@
     <main class="pt-[150px]">
       <h3>fdgffgfgh</h3>
 
-      <form method="get" class="bg-[#352F44] w-[900px] mx-auto rounded-md p-5">
+      <form
+        method="get"
+        class="bg-[#352F44] w-[900px] mx-auto rounded-md p-5"
+        id="resource-form"
+      >
         <div class="flex justify-between items-center gap-7">
           <div class="w-full">
             <label for="course-title" class="text-[#FAF0E6] font-semibold"
@@ -55,16 +59,17 @@
 
           <!-- Content Type -->
           <div class="w-full">
-            <label for="content-type" class="text-[#FAF0E6] font-semibold"
+            <label for="cont-type" class="text-[#FAF0E6] font-semibold"
               >Content Type<span class="text-red-500">*</span></label
             >
-            <div class="mt-1">
+
+            <div>
               <select
-                name=""
                 class="outline-none p-3 capitalize rounded-md w-full"
-                id="content-type"
+                id="cont-type"
+                required="required"
               >
-                <option>Select type of content</option>
+                <option value="">Select type of content</option>
                 <option value="book">Book</option>
                 <option value="pdf">PDF</option>
                 <option value="video">Video</option>
@@ -75,7 +80,7 @@
 
           <!-- Author -->
           <div class="w-full">
-            <label for="content-type" class="text-[#FAF0E6] font-semibold"
+            <label for="author" class="text-[#FAF0E6] font-semibold"
               >Author<span class="text-red-500">*</span></label
             >
             <div class="mt-1">
@@ -83,11 +88,11 @@
                 class="outline-none p-3 capitalize rounded-md w-full"
                 id="author"
               >
-                <option>Select Name of Author</option>
+                <option value="">Select Name of Author</option>
                 <option value="anbu">Anbu Selvan</option>
                 <option value="shakespere">Shakespere</option>
-                <option value=""></option>
-                <option value=""></option>
+                <option value="helo">Helo</option>
+                <option value="done">Done</option>
               </select>
             </div>
           </div>
