@@ -2,15 +2,214 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="icon" type="image/svg+xml" href="/syllabus-organizer/assets/book-3fjvUzCs.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Home | Syllabus Organizer</title>
 
-    <script type="module" crossorigin src="/syllabus-organizer/assets/index-bw_0tWna.js"></script>
-    <link rel="stylesheet" crossorigin href="/syllabus-organizer/assets/index-vHHw50Ki.css">
-  </head>
-  <body>
-    <h1 class="">Hello</h1>
+    <!-- BoxIcons -->
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
 
+    <script type="module" crossorigin src="/syllabus-organizer/assets/index-2YH4Za7o.js"></script>
+    <link rel="stylesheet" crossorigin href="/syllabus-organizer/assets/index-HoLPQnD2.css">
+  </head>
+
+  <body class="font-Sen bg-[#B9B4C7] relative">
+    <header
+      class="bg-[#352F44] flex items-center justify-between px-[100px] py-5 absolute top-0 left-0 right-0"
+    >
+      <div class="py-2">
+        <a href="./index.html" class="text-[#FAF0E6] text-3xl"
+          >Syllabus Organizer</a
+        >
+      </div>
+
+      <div class="py-2">
+        <button
+          class="bg-[#B9B4C7] px-5 py-2 rounded-md text-[#352F44] flex justify-center items-center gap-2 hover:transition 500 hover:bg-[#a6a2b3]"
+        >
+          <box-icon type="logo" name="github" class="text-[#352F44]"></box-icon>
+          GitHub
+        </button>
+      </div>
+    </header>
+
+    <main class="pt-[150px]">
+      <h3>fdgffgfgh</h3>
+
+      <form method="get" class="bg-[#352F44] w-[900px] mx-auto rounded-md p-5">
+        <div class="flex justify-between items-center gap-7">
+          <div class="w-full">
+            <label for="course-title" class="text-[#FAF0E6] font-semibold"
+              >Course Title<span class="text-red-500">*</span></label
+            >
+            <div class="mt-1">
+              <input
+                type="text"
+                class="outline-none p-3 capitalize rounded-md w-full"
+                id="course-title"
+                placeholder="Enter the course title"
+                required="required"
+              />
+            </div>
+          </div>
+
+          <!-- Content Type -->
+          <div class="w-full">
+            <label for="content-type" class="text-[#FAF0E6] font-semibold"
+              >Content Type<span class="text-red-500">*</span></label
+            >
+            <div class="mt-1">
+              <select
+                name=""
+                class="outline-none p-3 capitalize rounded-md w-full"
+                id="content-type"
+              >
+                <option>Select type of content</option>
+                <option value="book">Book</option>
+                <option value="pdf">PDF</option>
+                <option value="video">Video</option>
+                <option value="journal-article">Journal Article</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Author -->
+          <div class="w-full">
+            <label for="content-type" class="text-[#FAF0E6] font-semibold"
+              >Author<span class="text-red-500">*</span></label
+            >
+            <div class="mt-1">
+              <select
+                class="outline-none p-3 capitalize rounded-md w-full"
+                id="author"
+              >
+                <option>Select Name of Author</option>
+                <option value="anbu">Anbu Selvan</option>
+                <option value="shakespere">Shakespere</option>
+                <option value=""></option>
+                <option value=""></option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- Duration & Notes -->
+        <div class="flex gap-[88px] items-start mt-5">
+          <!-- Duration -->
+          <div>
+            <div class="w-full">
+              <label for="content-duration" class="text-[#FAF0E6] font-semibold"
+                >Duration<span class="text-red-500">*</span></label
+              >
+              <div class="mt-1">
+                <input
+                  type="text"
+                  class="outline-none p-3 rounded-md w-full"
+                  id="content-duration"
+                  placeholder="Ex: 06:18"
+                  required="required"
+                />
+              </div>
+            </div>
+          </div>
+
+          <!-- Notes -->
+          <div class="w-[570px]">
+            <div class="w-full">
+              <label for="content-notes" class="text-[#FAF0E6] font-semibold"
+                >Notes
+              </label>
+              <div class="mt-1">
+                <textarea
+                  name=""
+                  class="outline-none p-3 rounded-md w-full text-[#352F44]"
+                  id="content-notes"
+                  rows="5"
+                  placeholder="Enter your additional notes."
+                ></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="mt-5">
+          <button
+            class="bg-[#B9B4C7] w-full p-3 font-bold text-xl text-[#352F44] rounded-md hover:transition 500 hover:bg-[#a6a2b3]"
+          >
+            Submit
+          </button>
+        </div>
+      </form>
+
+      <!-- Table Format -->
+      <div class="mt-16 w-full px-10">
+        <h3 class="text-center text-xl font-semibold text-primary mb-2">
+          List of Our Resources
+        </h3>
+        <table class="table w-full table-auto">
+          <thead class="bg-[#352F44] text-[#FAF0E6]">
+            <tr>
+              <th class="p-3">S.No</th>
+              <th class="p-3">Course Title</th>
+              <th class="p-3">Type</th>
+              <th class="p-3">Author</th>
+              <th class="p-3">Length</th>
+              <th class="p-3">Description</th>
+              <th class="p-3">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="bg-[#5d5869] text-[#e1d8cf] text-center">
+              <td class="p-3">1</td>
+              <td class="p-3">React</td>
+              <td class="p-3">Video</td>
+              <td class="p-3">Anbu</td>
+              <td class="p-3">04:50</td>
+              <td class="p-3">Nothing</td>
+              <td
+                class="p-3 text-center flex justify-center items-center gap-5"
+              >
+                <box-icon
+                  color="#e1d8cf"
+                  class="cursor-pointer hover:transition 500 hover:-translate-y-1"
+                  type="solid"
+                  name="edit"
+                ></box-icon>
+                <box-icon
+                  color="#e1d8cf"
+                  class="cursor-pointer hover:transition 500 hover:-translate-y-1"
+                  name="trash"
+                ></box-icon>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Summary -->
+      <div class="mt-10 px-10 pb-28">
+        <h3 class="text-center text-xl text-primary font-semibold mb-3">
+          Summary of Our Resources
+        </h3>
+        <table class="table table-auto w-[600px] mx-auto">
+          <thead>
+            <tr class="bg-primary text-textPrimary">
+              <th class="p-3">S.No</th>
+              <th class="p-3">Content</th>
+              <th class="p-3">Length / Value</th>
+            </tr>
+          </thead>
+
+          <tbody class="text-center">
+            <tr class="bg-tableSecondary text-textSecondary">
+              <td class="p-3">1</td>
+              <td class="p-3">Videos</td>
+              <td class="p-3">02</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </main>
   </body>
 </html>
