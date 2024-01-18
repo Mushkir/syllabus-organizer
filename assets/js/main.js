@@ -1,11 +1,13 @@
 // Storyline
 // 1. Need to do data validation
 import JustValidate from "just-validate";
-import { Rule } from "postcss";
 
-const validator = new JustValidate("#resource-form", {
+const formEl = document.querySelector("#resourceForm");
+console.log(formEl);
+const validator = new JustValidate(formEl, {
   validateBeforeSubmitting: true,
 });
+console.log(validator);
 
 validator.addField(
   "#course-title",
@@ -19,7 +21,7 @@ validator.addField(
     },
     {
       rule: "maxLength",
-      value: 15,
+      value: 30,
     },
   ],
   {
@@ -83,9 +85,27 @@ validator.addField(
   }
 );
 
+validator.addField(
+  "#content-notes",
+  [
+    {
+      rule: "required",
+    },
+  ],
+  {
+    errorLabelCssClass: ["form-error"],
+    errorLabelStyle: {
+      color: "#ffb2b2",
+    },
+  }
+);
 // 2. Get the data from input
 validator.onSuccess(() => {
-  console.log("hi");
+  // e.preventDefault();
+
+  const formData = new FormData(formEl);
+  const newForm = Object.fromEntries(formData.entries());
+  console.log(newForm);
 });
 // 3. Store the data in localStorage
 // 4. Fetch the data from localStorage
