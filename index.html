@@ -32,7 +32,7 @@
       </div>
     </header>
 
-    <main class="pt-[150px]">
+    <main class="pt-[150px]" id="main-element">
       <form
         class="bg-[#352F44] w-[900px] mx-auto rounded-md p-5"
         id="resourceForm"
@@ -162,31 +162,7 @@
               <th class="p-3">Actions</th>
             </tr>
           </thead>
-          <tbody>
-            <tr class="bg-[#5d5869] text-[#e1d8cf] text-center">
-              <td class="p-3">1</td>
-              <td class="p-3">React</td>
-              <td class="p-3">Video</td>
-              <td class="p-3">Anbu</td>
-              <td class="p-3">04:50</td>
-              <td class="p-3">Nothing</td>
-              <td
-                class="p-3 text-center flex justify-center items-center gap-5"
-              >
-                <box-icon
-                  color="#e1d8cf"
-                  class="cursor-pointer hover:transition 500 hover:-translate-y-1"
-                  type="solid"
-                  name="edit"
-                ></box-icon>
-                <box-icon
-                  color="#e1d8cf"
-                  class="cursor-pointer hover:transition 500 hover:-translate-y-1"
-                  name="trash"
-                ></box-icon>
-              </td>
-            </tr>
-          </tbody>
+          <tbody id="table-body"></tbody>
         </table>
       </div>
 
