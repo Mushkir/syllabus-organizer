@@ -118,9 +118,7 @@ validator.onSuccess(() => {
   //! 3.Convert into string format
   const resourceStringObj = JSON.stringify(formDataObj);
 
-  // 3. Store the data in localStorage
-
-  // 4. Fetch the data from localStorage
+  // 4. Store & Fetch the data from localStorage
   const existingResourceData = localStorage.getItem(localStorageKey); // String type data
   const existingResourceDataJsonObj = JSON.parse(existingResourceData); // Converted string data into JSON Object.
 
@@ -140,5 +138,5 @@ validator.onSuccess(() => {
   formEl.reset();
 });
 
-// 5. Show the fetched data in UI table format.
-// 6. Show the report in report table.
+// 4. Show the fetched data in UI table format.
+// 5. Show the report in report table.
