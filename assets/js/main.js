@@ -1,6 +1,7 @@
 // Storyline
 // 1. Need to do data validation
 import JustValidate from "just-validate";
+import { v4 as uuidv4 } from "uuid";
 
 const formEl = document.querySelector("#resourceForm");
 const mainEl = document.querySelector("#main-element");
@@ -104,20 +105,22 @@ validator.addField(
 );
 // 2. Get the data from input
 validator.onSuccess(() => {
-  const newResourceDataArray = [];
-
   //! Steps to Get the Values in Form
   //! 1. Get the form using FormData()
   const formData = new FormData(formEl);
+
+  formData.append("id", uuidv4());
 
   //! 2. Get the values from form using Object.fromEntries()
   const formDataObj = Object.fromEntries(formData.entries());
   console.log(formDataObj);
 
+  const newResourceDataArray = [];
+
   //! 3.Convert into string format
   const resourceStringObj = JSON.stringify(formDataObj);
 
-  // 4. Store & Fetch the data from localStorage
+  // 3. Store & Fetch the data from localStorage
   const existingResourceData = localStorage.getItem(localStorageKey); // String type data
   const existingResourceDataJsonObj = JSON.parse(existingResourceData); // Converted string data into JSON Object.
 
@@ -136,10 +139,11 @@ validator.onSuccess(() => {
 
   // 4. Show the fetched data in UI table format.
   displayResourcesInTable();
+
   formEl.reset();
 });
-displayResourcesInTable();
 
+displayResourcesInTable();
 // 5. Show the report in report table.
 
 // Todo: Need to Fetch the data from localStorage
@@ -147,89 +151,89 @@ function displayResourcesInTable() {
   // 4.1 Need to get the datas from localStorage
   const fetchedResourceDetails = localStorage.getItem(localStorageKey);
   const fetchedResourceObj = JSON.parse(fetchedResourceDetails);
-  const finalRow = [];
 
-  const tableDiv = document.createElement("div");
   const tableBodyEl = document.querySelector("#table-body");
 
-  const editButtonEl = document.createElement("button");
-  const deleteButtonEl = document.createElement("button");
+  if (fetchedResourceObj && fetchedResourceObj.length > 0) {
+    tableBodyEl.innerHTML = "";
 
-  let serialNum = 1;
+    const finalRow = [];
 
-  fetchedResourceObj.map((element) => {
-    const rowEl = document.createElement("tr");
-    rowEl.classList.add("bg-[#5d5869]", "text-[#e1d8cf]", "text-center");
+    let serialNum = 1;
 
-    const editButtonEl = document.createElement("button");
-    const deleteButtonEl = document.createElement("button");
+    fetchedResourceObj.map((element) => {
+      const rowEl = document.createElement("tr");
+      rowEl.classList.add("bg-[#5d5869]", "text-[#e1d8cf]", "text-center");
 
-    const serialNumCell = document.createElement("td");
-    serialNumCell.classList.add("p-3");
-    serialNumCell.textContent = `#${serialNum++}`;
-    rowEl.append(serialNumCell);
+      const editButtonEl = document.createElement("button");
+      const deleteButtonEl = document.createElement("button");
 
-    const titleCell = document.createElement("td");
-    titleCell.classList.add("p-3");
-    titleCell.textContent = element.courseTitle;
-    rowEl.append(titleCell);
+      const serialNumCell = document.createElement("td");
+      serialNumCell.classList.add("p-3");
+      serialNumCell.textContent = `#${serialNum++}`;
+      rowEl.append(serialNumCell);
 
-    const typeCell = document.createElement("td");
-    typeCell.classList.add("p-3");
-    typeCell.textContent = element.contentType;
-    rowEl.append(typeCell);
+      const titleCell = document.createElement("td");
+      titleCell.classList.add("p-3");
+      titleCell.textContent = element.courseTitle;
+      rowEl.append(titleCell);
 
-    const authorCell = document.createElement("td");
-    authorCell.classList.add("p-3");
-    authorCell.textContent = element.authorName;
-    rowEl.append(authorCell);
+      const typeCell = document.createElement("td");
+      typeCell.classList.add("p-3");
+      typeCell.textContent = element.contentType;
+      rowEl.append(typeCell);
 
-    const lengthCell = document.createElement("td");
-    lengthCell.classList.add("p-3");
-    lengthCell.textContent = element.contentDuration;
-    rowEl.append(lengthCell);
+      const authorCell = document.createElement("td");
+      authorCell.classList.add("p-3");
+      authorCell.textContent = element.authorName;
+      rowEl.append(authorCell);
 
-    const noteCell = document.createElement("td");
-    noteCell.classList.add("p-3");
-    noteCell.textContent = element.notes;
-    rowEl.append(noteCell);
+      const lengthCell = document.createElement("td");
+      lengthCell.classList.add("p-3");
+      lengthCell.textContent = element.contentDuration;
+      rowEl.append(lengthCell);
 
-    const actionCell = document.createElement("td");
-    actionCell.classList.add(
-      "p-3",
-      "text-center",
-      "flex",
-      "justify-center",
-      "items-center",
-      "gap-5"
-    );
+      const noteCell = document.createElement("td");
+      noteCell.classList.add("p-3");
+      noteCell.textContent = element.notes;
+      rowEl.append(noteCell);
 
-    editButtonEl.innerHTML = `<box-icon
-    color="#e1d8cf"
-    class="cursor-pointer hover:transition 500 hover:-translate-y-1"
-    name="trash"
-  ></box-icon>`;
+      const actionCell = document.createElement("td");
+      actionCell.classList.add(
+        "p-3",
+        "text-center",
+        "flex",
+        "justify-center",
+        "items-center",
+        "gap-5"
+      );
 
-    deleteButtonEl.innerHTML = `<box-icon
-    color="#e1d8cf"
-    class="cursor-pointer hover:transition 500 hover:-translate-y-1"
-    type="solid"
-    name="edit"
-  ></box-icon>`;
+      deleteButtonEl.innerHTML = `<box-icon
+      color="#e1d8cf"
+      class="cursor-pointer hover:transition 500 hover:-translate-y-1"
+      name="trash"
+    ></box-icon>`;
 
-    actionCell.append(editButtonEl);
-    actionCell.append(deleteButtonEl);
+      editButtonEl.innerHTML = `<box-icon
+      color="#e1d8cf"
+      class="cursor-pointer hover:transition 500 hover:-translate-y-1"
+      type="solid"
+      name="edit"
+    ></box-icon>`;
 
-    // Delete operation
-    deleteButtonEl.addEventListener("click", () => deleteRecord(element));
+      actionCell.append(editButtonEl);
+      actionCell.append(deleteButtonEl);
 
-    rowEl.append(actionCell);
-    // console.log(element);
-    finalRow.push(rowEl);
-  });
+      // Delete operation
+      deleteButtonEl.addEventListener("click", () => deleteRecord(element));
 
-  // 4.2 Display in UI
-  finalRow.forEach((el) => tableBodyEl.append(el));
+      rowEl.append(actionCell);
+      // console.log(element);
+      finalRow.push(rowEl);
+    });
+    // 4.2 Display in UI
+    finalRow.forEach((el) => tableBodyEl.append(el));
+  }
 }
 
-function deleteRecords(totalFetchedJsonData) {}
+// function deleteRecords(totalFetchedJsonData) {}
