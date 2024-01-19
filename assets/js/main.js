@@ -3,11 +3,13 @@
 import JustValidate from "just-validate";
 
 const formEl = document.querySelector("#resourceForm");
-console.log(formEl);
+
+const localStorageKey = "resourcesData";
+
 const validator = new JustValidate(formEl, {
   validateBeforeSubmitting: true,
 });
-console.log(validator);
+// console.log(validator);
 
 validator.addField(
   "#course-title",
@@ -103,11 +105,40 @@ validator.addField(
 validator.onSuccess(() => {
   // e.preventDefault();
 
+  const newResourceDataArray = [];
+
+  //! Steps to Get the Values in Form
+  //! 1. Get the form using FormData()
   const formData = new FormData(formEl);
-  const newForm = Object.fromEntries(formData.entries());
-  console.log(newForm);
+
+  //! 2. Get the values from form using Object.fromEntries()
+  const formDataObj = Object.fromEntries(formData.entries());
+  console.log(formDataObj);
+
+  //! 3.Convert into string format
+  const resourceStringObj = JSON.stringify(formDataObj);
+
+  // 3. Store the data in localStorage
+
+  // 4. Fetch the data from localStorage
+  const existingResourceData = localStorage.getItem(localStorageKey); // String type data
+  const existingResourceDataJsonObj = JSON.parse(existingResourceData); // Converted string data into JSON Object.
+
+  if (existingResourceData) {
+    existingResourceDataJsonObj.push(formDataObj);
+
+    localStorage.setItem(
+      localStorageKey,
+      JSON.stringify(existingResourceDataJsonObj)
+    );
+  } else {
+    newResourceDataArray.push(formDataObj);
+
+    localStorage.setItem(localStorageKey, JSON.stringify(newResourceDataArray));
+  }
+
+  formEl.reset();
 });
-// 3. Store the data in localStorage
-// 4. Fetch the data from localStorage
+
 // 5. Show the fetched data in UI table format.
 // 6. Show the report in report table.
