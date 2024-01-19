@@ -139,11 +139,14 @@ validator.onSuccess(() => {
 
   // 4. Show the fetched data in UI table format.
   displayResourcesInTable();
+  displaySummaryOfRecords();
 
   formEl.reset();
 });
 
 displayResourcesInTable();
+displaySummaryOfRecords();
+
 // 5. Show the report in report table.
 
 // Todo: Need to Fetch the data from localStorage
@@ -236,6 +239,7 @@ function displayResourcesInTable() {
   }
 }
 
+// Function for delete process
 function deleteRecord(totalFetchedJsonData) {
   const confirmDelete = confirm(
     `As a final verification, would you like to delete ${totalFetchedJsonData.courseTitle} permenantly?`
@@ -257,4 +261,161 @@ function deleteRecord(totalFetchedJsonData) {
     console.log(filteredResources);
   }
   displayResourcesInTable();
+  displaySummaryOfRecords();
+}
+
+// Function for display summary
+// ...
+
+// Function for display summary
+// Dynamcially Get the Types and Make them as Object
+// function displaySummaryOfRecords() {
+//   const existingResourceData = localStorage.getItem(localStorageKey);
+//   const existingResourceDataObj = JSON.parse(existingResourceData);
+
+//   const summaryTableBodyEl = document.querySelector("#summary-table-body");
+//   let serialNo = 1;
+
+//   if (existingResourceDataObj && existingResourceDataObj.length > 0) {
+//     summaryTableBodyEl.innerHTML = "";
+
+//     // Dynamic function to calculate resource summary
+//     function calculateResourceSummary(resourceData) {
+//       const summary = {};
+
+//       resourceData.forEach((element) => {
+//         const contentType = element.contentType;
+//         if (summary[contentType]) {
+//           summary[contentType]++;
+//         } else {
+//           summary[contentType] = 1;
+//         }
+
+//         console.log(summary);
+//       });
+
+//       return Object.entries(summary).map(([resourceName, count]) => ({
+//         resourceName,
+//         count,
+//       }));
+//     }
+
+//     const resourceSummary = calculateResourceSummary(existingResourceDataObj);
+//     console.log(resourceSummary);
+
+//     const newObject = resourceSummary.map((element) => {
+//       const tblRowEl = document.createElement("tr");
+//       tblRowEl.classList.add("bg-tableSecondary", "text-textSecondary");
+
+//       const serialNumberCell = document.createElement("td");
+//       serialNumberCell.classList.add("p-3");
+//       serialNumberCell.textContent = `${serialNo++}`;
+//       tblRowEl.append(serialNumberCell);
+
+//       const resourceTypeCell = document.createElement("td");
+//       resourceTypeCell.classList.add("p-3");
+//       resourceTypeCell.textContent = element.resourceName;
+//       tblRowEl.append(resourceTypeCell);
+
+//       const resourceCountCell = document.createElement("td");
+//       resourceCountCell.classList.add("p-3");
+
+//       element.count < 10
+//         ? (resourceCountCell.textContent = `0${element.count}`)
+//         : (resourceCountCell.textContent = element.count);
+
+//       tblRowEl.append(resourceCountCell);
+
+//       return tblRowEl;
+//     });
+
+//     newObject.forEach((element) => summaryTableBodyEl.append(element));
+//   }
+// }
+
+// ...
+
+function displaySummaryOfRecords() {
+  const existingResourceData = localStorage.getItem(localStorageKey);
+  const existingResourceDataObj = JSON.parse(existingResourceData);
+
+  existingResourceDataObj.forEach((element) => {
+    console.log(element.contentType);
+  });
+
+  const summaryTableBodyEl = document.querySelector("#summary-table-body");
+  let serialNo = 1;
+  const newObject = [];
+
+  if (existingResourceDataObj && existingResourceDataObj.length > 0) {
+    summaryTableBodyEl.innerHTML = "";
+    // Finding Total Video Category
+    const totalVideoResources = existingResourceDataObj.filter(
+      (element) => element.contentType == "video"
+    ).length;
+
+    // Finding Total PDF Category
+    const totalPdfResources = existingResourceDataObj.filter(
+      (element) => element.contentType == "pdf"
+    ).length;
+
+    // Finding Total Book Category
+    const totalBookResources = existingResourceDataObj.filter(
+      (element) => element.contentType == "book"
+    ).length;
+
+    // Finding Total Journal Article Category
+    const totalJournalArticleResources = existingResourceDataObj.filter(
+      (element) => element.contentType == "journal-article"
+    ).length;
+
+    const resourceSummary = [
+      {
+        resourceName: "Book",
+        count: totalBookResources,
+      },
+      {
+        resourceName: "PDF",
+        count: totalPdfResources,
+      },
+      {
+        resourceName: "Journal Article",
+        count: totalJournalArticleResources,
+      },
+      {
+        resourceName: "Video",
+        count: totalVideoResources,
+      },
+    ];
+
+    resourceSummary.map((element) => {
+      console.log(element);
+
+      const tblRowEl = document.createElement("tr");
+      tblRowEl.classList.add("bg-tableSecondary", "text-textSecondary");
+
+      const serialNumberCell = document.createElement("td");
+      serialNumberCell.classList.add("p-3");
+      serialNumberCell.textContent = `#${serialNo++}`;
+      tblRowEl.append(serialNumberCell);
+
+      const resourceTypeCell = document.createElement("td");
+      resourceTypeCell.classList.add("p-3");
+      resourceTypeCell.textContent = element.resourceName;
+      tblRowEl.append(resourceTypeCell);
+
+      const resourceCountCell = document.createElement("td");
+      resourceCountCell.classList.add("p-3");
+
+      element.count < 10
+        ? (resourceCountCell.textContent = `0${element.count}`)
+        : (resourceCountCell.textContent = element.count);
+      // resourceCountCell.textContent = element.count;
+      tblRowEl.append(resourceCountCell);
+
+      newObject.push(tblRowEl);
+    });
+
+    newObject.forEach((element) => summaryTableBodyEl.append(element));
+  }
 }
