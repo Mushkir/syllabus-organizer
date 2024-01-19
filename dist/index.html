@@ -2,27 +2,15 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link
-      rel="icon"
-      type="image/svg+xml"
-      href="/syllabus-organizer/assets/book-3fjvUzCs.png"
-    />
+    <link rel="icon" type="image/svg+xml" href="/syllabus-organizer/assets/book-3fjvUzCs.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Home | Syllabus Organizer</title>
 
     <!-- BoxIcons -->
     <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
 
-    <script
-      type="module"
-      crossorigin
-      src="/syllabus-organizer/assets/index-ZibgZ1Zd.js"
-    ></script>
-    <link
-      rel="stylesheet"
-      crossorigin
-      href="/syllabus-organizer/assets/index-irQyFcYa.css"
-    />
+    <script type="module" crossorigin src="/syllabus-organizer/assets/index-nPliHYhS.js"></script>
+    <link rel="stylesheet" crossorigin href="/syllabus-organizer/assets/index-irQyFcYa.css">
   </head>
 
   <body class="font-Sen bg-[#B9B4C7] relative">
@@ -46,12 +34,9 @@
     </header>
 
     <main class="pt-[150px]">
-      <h3>fdgffgfgh</h3>
-
       <form
-        method="get"
         class="bg-[#352F44] w-[900px] mx-auto rounded-md p-5"
-        id="resource-form"
+        id="resourceForm"
       >
         <div class="flex justify-between items-center gap-7">
           <div class="w-full">
@@ -60,6 +45,7 @@
             >
             <div class="mt-1">
               <input
+                name="courseTitle"
                 type="text"
                 class="outline-none p-3 capitalize rounded-md w-full"
                 id="course-title"
@@ -77,6 +63,7 @@
 
             <div>
               <select
+                name="contentType"
                 class="outline-none p-3 capitalize rounded-md w-full"
                 id="cont-type"
                 required="required"
@@ -97,6 +84,7 @@
             >
             <div class="mt-1">
               <select
+                name="authorName"
                 class="outline-none p-3 capitalize rounded-md w-full"
                 id="author"
               >
@@ -120,11 +108,13 @@
               >
               <div class="mt-1">
                 <input
+                  name="contentDuration"
                   type="text"
                   class="outline-none p-3 rounded-md w-full"
                   id="content-duration"
                   placeholder="Ex: 06:18"
                   required="required"
+                  value="06:18"
                 />
               </div>
             </div>
@@ -132,31 +122,28 @@
 
           <!-- Notes -->
           <div class="w-[570px]">
-            <div class="w-full">
-              <label for="content-notes" class="text-[#FAF0E6] font-semibold"
-                >Notes
-              </label>
-              <div class="mt-1">
-                <textarea
-                  name=""
-                  class="outline-none p-3 rounded-md w-full text-[#352F44]"
-                  id="content-notes"
-                  rows="5"
-                  placeholder="Enter your additional notes."
-                ></textarea>
-              </div>
+            <label for="content-notes" class="text-[#FAF0E6] font-semibold"
+              >Notes
+            </label>
+            <div class="mt-1">
+              <textarea
+                name="notes"
+                class="outline-none p-3 rounded-md w-full text-[#352F44]"
+                id="content-notes"
+                rows="5"
+                placeholder="Enter your additional notes."
+              ></textarea>
             </div>
           </div>
         </div>
 
         <!-- Submit Button -->
-        <div class="mt-5">
-          <button
-            class="bg-[#B9B4C7] w-full p-3 font-bold text-xl text-[#352F44] rounded-md hover:transition 500 hover:bg-[#a6a2b3]"
-          >
-            Submit
-          </button>
-        </div>
+        <button
+          type="submit"
+          class="bg-[#B9B4C7] mt-5 w-full p-3 font-bold text-xl text-[#352F44] rounded-md hover:transition 500 hover:bg-[#a6a2b3]"
+        >
+          Submit
+        </button>
       </form>
 
       <!-- Table Format -->
