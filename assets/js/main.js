@@ -236,4 +236,25 @@ function displayResourcesInTable() {
   }
 }
 
-// function deleteRecords(totalFetchedJsonData) {}
+function deleteRecord(totalFetchedJsonData) {
+  const confirmDelete = confirm(
+    `As a final verification, would you like to delete ${totalFetchedJsonData.courseTitle} permenantly?`
+  );
+
+  if (confirmDelete) {
+    const existingResourcesStringData = localStorage.getItem(localStorageKey);
+    let existingResourceJsonData = JSON.parse(existingResourcesStringData);
+
+    const filteredResources = existingResourceJsonData.filter((data) => {
+      return data.id != totalFetchedJsonData.id;
+    });
+
+    existingResourceJsonData = filteredResources;
+    localStorage.setItem(
+      localStorageKey,
+      JSON.stringify(existingResourceJsonData)
+    );
+    console.log(filteredResources);
+  }
+  displayResourcesInTable();
+}
