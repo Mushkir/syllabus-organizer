@@ -1,7 +1,7 @@
 // Storyline
 // 1. Need to do data validation
 import JustValidate from "just-validate";
-import { v4 as uuidv4 } from "uuid";
+import { v4 as uuidv4 } from "uuid"; // Random
 
 const formEl = document.querySelector("#resourceForm");
 const mainEl = document.querySelector("#main-element");
@@ -66,43 +66,6 @@ validator.addField(
   }
 );
 
-validator.addField(
-  "#content-duration",
-  [
-    {
-      rule: "required",
-    },
-    {
-      rule: "minLength",
-      value: 5,
-    },
-    {
-      rule: "maxLength",
-      value: 5,
-    },
-  ],
-  {
-    errorLabelCssClass: ["form-error"],
-    errorLabelStyle: {
-      color: "#ffb2b2",
-    },
-  }
-);
-
-validator.addField(
-  "#content-notes",
-  [
-    {
-      rule: "required",
-    },
-  ],
-  {
-    errorLabelCssClass: ["form-error"],
-    errorLabelStyle: {
-      color: "#ffb2b2",
-    },
-  }
-);
 // 2. Get the data from input
 validator.onSuccess(() => {
   //! Steps to Get the Values in Form
@@ -177,13 +140,17 @@ function displayResourcesInTable() {
       rowEl.append(serialNumCell);
 
       const titleCell = document.createElement("td");
-      titleCell.classList.add("p-3");
+      titleCell.classList.add("p-3", "capitalize");
       titleCell.textContent = element.courseTitle;
       rowEl.append(titleCell);
 
       const typeCell = document.createElement("td");
-      typeCell.classList.add("p-3");
       typeCell.textContent = element.contentType;
+
+      element.contentType == "pdf"
+        ? typeCell.classList.add("p-3", "uppercase")
+        : typeCell.classList.add("p-3", "capitalize");
+
       rowEl.append(typeCell);
 
       const authorCell = document.createElement("td");
@@ -193,12 +160,19 @@ function displayResourcesInTable() {
 
       const lengthCell = document.createElement("td");
       lengthCell.classList.add("p-3");
-      lengthCell.textContent = element.contentDuration;
+
+      element.contentDuration == ""
+        ? (lengthCell.textContent = `It is ${element.contentType} type and It doesn't have any Duration or Length.`)
+        : (lengthCell.textContent = `${element.contentDuration}`);
       rowEl.append(lengthCell);
 
       const noteCell = document.createElement("td");
       noteCell.classList.add("p-3");
       noteCell.textContent = element.notes;
+
+      element.notes == ""
+        ? (noteCell.textContent = "This content don't have additional notes.")
+        : (noteCell.textContent = `${element.notes}`);
       rowEl.append(noteCell);
 
       const actionCell = document.createElement("td");
