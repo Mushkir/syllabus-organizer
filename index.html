@@ -44,13 +44,13 @@
             <label for="course-title" class="text-[#FAF0E6] font-semibold"
               >Resource Title<span class="text-red-500">*</span></label
             >
-            <div class="mt-1">
+            <div class="">
               <input
                 name="courseTitle"
                 type="text"
                 class="outline-none p-3 capitalize rounded-md w-full"
                 id="course-title"
-                placeholder="Enter the course title"
+                placeholder="Enter the resource title"
                 required="required"
               />
             </div>
@@ -99,9 +99,9 @@
         </div>
 
         <!-- Duration & Notes -->
-        <div class="flex gap-[88px] items-start mt-5">
+        <div class="flex gap-[31px] items-start mt-5">
           <!-- Duration -->
-          <div>
+          <div class="width">
             <div class="w-full">
               <label for="content-duration" class="text-[#FAF0E6] font-semibold"
                 >Duration</label
@@ -114,6 +114,13 @@
                   id="content-duration"
                   placeholder="Ex: 06:18 (Video Resource)"
                 />
+              </div>
+              <div>
+                <label
+                  for="content-duration"
+                  class="text-gray-400 fon-size-ten-px mt-2"
+                  >Currently only for Video Materials.</label
+                >
               </div>
             </div>
           </div>
@@ -129,7 +136,7 @@
                 class="outline-none p-3 rounded-md w-full text-[#352F44]"
                 id="content-notes"
                 rows="5"
-                placeholder="Enter your additional notes."
+                placeholder="Enter your additional notes (Optional)."
               ></textarea>
             </div>
           </div>
